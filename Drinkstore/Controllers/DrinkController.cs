@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Drinkstore.Data.Interfaces;
+using Drinkstore.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Drinkstore.Controllers
@@ -21,7 +22,10 @@ namespace Drinkstore.Controllers
         public ViewResult List()
         {
             var drinks = _drinkRepository.Drinks;
-            return View(drinks);
+            var vm = new DrinkListViewModel();
+            vm.Drinks = drinks;
+            vm.CurrentCategory = "Alcohol category";
+            return View(vm);
         }
     }
 }
